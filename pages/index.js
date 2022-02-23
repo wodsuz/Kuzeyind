@@ -28,7 +28,7 @@ export default function Home({ data }) {
       </Head>
       <div className="relative flex items-center justify-center h-screen overflow-hidden text-center ">
         <div className="relative z-30 w-5/6 p-5 text-2xl bg-purple-100 text-dark h-5/6 bg-opacity-60 rounded-xl">
-          Kuzey ind
+          Kuzey ind!
         </div>
         <video
           poster="https://i.vimeocdn.com/video/860865261-6d8855858ecf3e3351572ad009f1c79cb6e52a69cbb2e47f6ffb7f320f3b7b4d-d?mw=1200&mh=675"
@@ -36,7 +36,6 @@ export default function Home({ data }) {
           autoPlay
           muted
           loop
-          playsInline
           className="absolute z-10 w-auto min-w-full min-h-full max-w-fit" //
         >
           <source src={data.link} type="video/mp4" />
