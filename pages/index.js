@@ -38,7 +38,10 @@ export default function Home({ data }) {
           loop
           className="absolute z-10 w-auto min-w-full min-h-full max-w-fit" //
         >
-          <source src={data.link} type="video/mp4" />
+          <source
+            src="https://player.vimeo.com/external/394835713.hd.mp4?s=ce61fce500bccc6b8c1ae357271e5b4cb9731e76&profile_id=175&oauth2_token_id=57447761"
+            type="video/mp4"
+          />
           Your browser does not support the video tag.
         </video>
       </div>
