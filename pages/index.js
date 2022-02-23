@@ -1,10 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
 import { useEffect } from "react";
 import { getCuratedPhotos } from "../lib/pexels";
 export async function getServerSideProps() {
   const data = await getCuratedPhotos();
-  console.log(data);
   return {
     props: {
       data,
@@ -29,7 +27,7 @@ export default function Home({ data }) {
         />
       </Head>
       <div className="relative flex items-center justify-center h-screen overflow-hidden text-center ">
-        <div className="relative z-30 p-5 text-2xl text-dark bg-purple-100 h-5/6 w-5/6 bg-opacity-60 rounded-xl">
+        <div className="relative z-30 w-5/6 p-5 text-2xl bg-purple-100 text-dark h-5/6 bg-opacity-60 rounded-xl">
           Kuzey ind
         </div>
         <video
@@ -38,7 +36,7 @@ export default function Home({ data }) {
           autoPlay
           muted
           loop
-          playsinline
+          playsInline
           className="absolute z-10 w-auto min-w-full min-h-full max-w-fit" //
         >
           <source src={data.link} type="video/mp4" />

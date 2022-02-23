@@ -1,5 +1,4 @@
-import { createClient } from "pexels";
-const API_KEY = process.env.PEXEL_API_KEY;
+const API_KEY = process.env.NEXT_PUBLIC_PEXELS_API_KEY;
 
 export const getCuratedPhotos = async () => {
   const res = await fetch(
