@@ -1,6 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
+  env: {
+    SHOPIFY_STOREFRONT_ACCESSTOKEN: process.env.PEXEL_API_KEY,
+  },
   reactStrictMode: true,
-}
-
-module.exports = nextConfig
+};
