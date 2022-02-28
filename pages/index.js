@@ -4,6 +4,7 @@ import { getCuratedPhotos } from "../lib/pexels";
 import Headtitle from "../components/header.tsx";
 import Topbanner from "../components/Topbanner.tsx";
 import Navbar from "../components/Navbar.tsx";
+import Footer from "../components/Footer.tsx";
 export async function getServerSideProps() {
   const data = await getCuratedPhotos();
   return {
@@ -14,7 +15,6 @@ export async function getServerSideProps() {
 }
 export default function Home({ data }) {
   console.log(data.link);
-  // https://drive.google.com/file/d/1dcYabNhVyYPsRNldU_S9J_EsudiFVG9s/view?usp=sharing
   useEffect(() => {
     var vid = document.getElementById("vid");
     vid.playbackRate = 0.5;

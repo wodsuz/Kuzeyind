@@ -1,4 +1,5 @@
 const API_KEY = process.env.NEXT_PUBLIC_PEXELS_API_KEY;
+import { useEffect } from "react";
 
 export const getCuratedPhotos = async () => {
   const res = await fetch(
