@@ -19,17 +19,16 @@ export async function getServerSideProps() {
 
 export default function Food({ data }) {
   const [showModal, setShowModal] = React.useState(false);
+  const cache = {};
+
   function importAll(r) {
-    let images = {};
-    r.keys().map((item, index) => {
-      images[item.replace("./", "")] = r(item);
-    });
-    return images;
+    r.keys().forEach((key) => (cache[key] = r(key)));
   }
-  const images = importAll(
-    require.context("../public/images", false, /\.(png|jpe?g|svg)$/)
-  );
-  console.log(images);
+  // Note from the docs -> Warning: The arguments passed to require.context must be literals!
+  importAll(require.context("../public/images", false, /\.(png|jpe?g|svg)$/));
+
+  const images = Object.entries(cache).map((module) => module[1].default);
+  console.log(images[0].src);
   var children = (
     <div className="">
       <a className="flex justify-center text-2xl border-b-2 text-dark-700 border-dark">
@@ -151,15 +150,17 @@ export default function Food({ data }) {
       <div className="">
         <div className="flex mt-4">
           <button className="" type="button" onClick={() => setShowModal(true)}>
-            <Image
-              src={images["apple.jpg"]}
-              alt={"powder-logo"}
-              layout="fixed"
-              objectFit="cover"
-              className="rounded-md cursor-pointer hover:opacity-70"
-              height={150}
-              width={150}
-            />
+            {images.map((image) => (
+              <Image
+                src={image.src}
+                alt={"powder-logo"}
+                layout="fixed"
+                objectFit="cover"
+                className="rounded-md cursor-pointer hover:opacity-70"
+                height={150}
+                width={150}
+              />
+            ))}
           </button>
         </div>
       </div>
