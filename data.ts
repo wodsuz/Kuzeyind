@@ -15,7 +15,7 @@ export const fruit: IFoodProducts[] = [
   {
     Icon: BiCategory,
     title: "Types: ",
-    about: "Natural sun dried,Spray Dried(SD),Freeze Dried(FD)",
+    about: "Natural sun dried, Spray Dried(SD),Freeze Dried(FD)",
   },
   {
     Icon: GiDiploma,

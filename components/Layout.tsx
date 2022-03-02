@@ -9,11 +9,11 @@ import Navbar from "../components/Navbar.tsx";
 export default function Layout({ data, visibility, children }) {
   const vis =
     visibility > 0 ? (
-      <div className="border-b-2 border-sky-500 visible">
+      <div className="visible border-b-2 border-sky-500">
         <Topbanner />
       </div>
     ) : (
-      <div className="border-b-2 border-sky-500 hidden ">
+      <div className="hidden border-b-2 border-sky-500 ">
         <Topbanner />
       </div>
     );
@@ -31,8 +31,8 @@ export default function Layout({ data, visibility, children }) {
         />
       </Head>
       <Headtitle />
-      <div className="relative flex items-center justify-center h-screen overflow-hidden  ">
-        <div className="z-30 w-11/12 p-2 text-2xl bg-purple-100 text-dark h-5/6 bg-opacity-60 rounded-xl">
+      <div className="relative flex items-center justify-center h-full overflow-hidden xl:h-screen ">
+        <div className="z-30 w-11/12 p-2 text-2xl bg-gray-100 text-dark bg-opacity-80 rounded-xl ">
           <Navbar />
           {vis}
           <main>{children}</main>
@@ -43,7 +43,7 @@ export default function Layout({ data, visibility, children }) {
           autoPlay
           muted
           loop
-          className="absolute z-10 w-auto min-w-full min-h-full max-w-fit" //
+          className="absolute z-10 w-auto min-w-full min-h-full max-w-none" //
         >
           <source src={data.link} type="video/mp4" />
           Your browser does not support the video tag.
