@@ -5,6 +5,7 @@ import { getCuratedPhotos } from "../lib/pexels";
 import { useEffect } from "react";
 import Topbanner from "../components/Topbanner.tsx";
 import Navbar from "../components/Navbar.tsx";
+import Footer from "./Footer";
 
 export default function Layout({ data, visibility, children }) {
   const vis =
@@ -31,8 +32,8 @@ export default function Layout({ data, visibility, children }) {
         />
       </Head>
       <Headtitle />
-      <div className="relative flex items-center justify-center h-full overflow-hidden xl:h-screen ">
-        <div className="z-30 w-11/12 p-2 text-2xl bg-gray-100 text-dark bg-opacity-80 rounded-xl ">
+      <div className="relative flex items-center justify-center h-full overflow-hidden ">
+        <div className="z-30 w-11/12 p-2 mt-10 mb-10 text-2xl bg-gray-100 text-dark bg-opacity-80 rounded-xl ">
           <Navbar />
           {vis}
           <main>{children}</main>
@@ -49,6 +50,7 @@ export default function Layout({ data, visibility, children }) {
           Your browser does not support the video tag.
         </video>
       </div>
+      <Footer />
     </div>
   );
 }

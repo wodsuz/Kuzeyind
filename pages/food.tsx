@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import Layout from "../components/Layout.tsx";
 import { getCuratedPhotos } from "../lib/pexels";
 import powder_logo from "../public/powders.png";
@@ -8,6 +7,9 @@ import ıqf_logo from "../public/ıqf.png";
 import conc_logo from "../public/conc.png";
 import { fruit } from "../data";
 import Image from "next/image";
+import { BiCertification } from "react-icons/bi";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { FiShoppingCart } from "react-icons/fi";
 export async function getServerSideProps() {
   const data: string = await getCuratedPhotos();
   return {
@@ -17,26 +19,35 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Food({ data }) {
+export default function Food({ data, ...props }) {
   const [showModal, setShowModal] = React.useState(false);
+  const [title, setTitle] = React.useState("No product");
+  const [Img, setImg] = React.useState("No image");
+  const [src, setSrc] = React.useState(props.src);
   const cache = {};
-
   function importAll(r) {
     r.keys().forEach((key) => (cache[key] = r(key)));
   }
-  // Note from the docs -> Warning: The arguments passed to require.context must be literals!
   importAll(require.context("../public/images", false, /\.(png|jpe?g|svg)$/));
-
   const images = Object.entries(cache).map((module) => module[1].default);
-  console.log(images[0].src);
+  React.useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.keyCode === 27) setShowModal(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
+  console.log(images[0]);
   var children = (
-    <div className="">
+    <div className="" id="body">
       <a className="flex justify-center text-2xl border-b-2 text-dark-700 border-dark">
         Fruit, Vegetables and their products
       </a>
-      <div className="container flex items-center justify-center border-b-2 border-dark">
+      <div className="flex items-center justify-center border-b-2 border-dark">
         <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          <div className="relative border-r-2 border-dark-200 ">
+          <div className="relative ">
             <div className="flex items-center justify-center mt-4">
               <Image
                 src={powder_logo}
@@ -63,7 +74,7 @@ export default function Food({ data }) {
               ))}
             </div>
           </div>
-          <div className="relative border-r-2 border-dark-200 ">
+          <div className="relative ">
             <div className="flex items-center justify-center mt-4">
               <Image
                 src={puree_logo}
@@ -90,7 +101,7 @@ export default function Food({ data }) {
               ))}
             </div>
           </div>
-          <div className="relative border-r-2 border-dark-200 ">
+          <div className="relative ">
             <div className="flex items-center justify-center mt-4">
               <Image
                 src={conc_logo}
@@ -147,19 +158,32 @@ export default function Food({ data }) {
         </div>
       </div>
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"></div>
-      <div className="">
-        <div className="flex mt-4">
-          <button className="" type="button" onClick={() => setShowModal(true)}>
+      <div className="mt-2 text-center center-align">
+        Fruit and Vegetables
+        <div className="flex mt-4 ">
+          <button className="focus:outline-none " type="button">
             {images.map((image) => (
-              <Image
-                src={image.src}
-                alt={"powder-logo"}
-                layout="fixed"
-                objectFit="cover"
-                className="rounded-md cursor-pointer hover:opacity-70"
-                height={150}
-                width={150}
-              />
+              <div className="inline-grid object-center grid-cols-1 ml-1 border-2 rounded-md border-dark-500">
+                <Image
+                  src={image.src}
+                  alt={image + "powderlogo"}
+                  layout="fixed"
+                  objectFit="cover"
+                  className="rounded-md cursor-pointer hover:opacity-30"
+                  height={100}
+                  width={100}
+                  onClick={() => {
+                    setTitle(
+                      image.src.substring(
+                        image.src.indexOf("media/") + 6,
+                        image.src.indexOf(".")
+                      )
+                    );
+                    setImg(image.src);
+                    setShowModal(true);
+                  }}
+                />
+              </div>
             ))}
           </button>
         </div>
@@ -171,41 +195,78 @@ export default function Food({ data }) {
               {/*content*/}
               <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                 {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid rounded-t border-blueGray-200">
-                  <h3 className="text-3xl font-semibold">Modal Title</h3>
+                <div className="flex items-start justify-between p-5 border-b border-solid rounded-t border-dark-300 ">
+                  <h3 className="text-3xl font-semibold">{title} Products</h3>
                   <button
                     className="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none"
                     onClick={() => setShowModal(false)}
-                  >
-                    <span className="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
-                      ×
-                    </span>
-                  </button>
+                  ></button>
+                  <div className="text-red-500 outline-none focus:outline-none">
+                    <button
+                      className="uppercase outline-none focus:outline-none"
+                      type="button"
+                      aria-label="close-button for product info"
+                      onClick={() => setShowModal(false)}
+                    >
+                      <AiFillCloseCircle className="w-5 h-5 mr-3 md:w-10 md:h-10 hover:text-red-800" />
+                    </button>
+                  </div>
                 </div>
                 {/*body*/}
-                <div className="relative flex-auto p-6">
-                  <p className="my-4 text-lg leading-relaxed text-blueGray-500">
-                    I always felt like I could do anything. That’s the main
-                    thing people are controlled by! Thoughts- their perception
-                    of themselves! They're slowed down by their perception of
-                    themselves. If you're taught you can’t do anything, you
-                    won’t do anything. I was taught I could do everything.
+                <div className="flex p-6 content">
+                  <Image
+                    src={Img}
+                    placeholder="blur"
+                    blurDataURL="../public/blurim.jpg"
+                    alt={Img + "powderlogo"}
+                    layout="fixed"
+                    objectFit="cover"
+                    className="rounded-md "
+                    height={400}
+                    width={400}
+                    onError={() => setSrc("../public/errim.jpg")}
+                  />
+                  <p className="w-1/2 my-4 ml-3 text-lg leading-relaxed text-blueGray-500">
+                    Natural Sun Dried Powder: <br />
+                    Spray Dried Powder (SD): <br />
+                    Freeze Dried Powder (FD): <br />
+                    <div className="border-t border-solid border-dark-300"></div>
+                    Puree(s):
+                    <div className="border-t border-solid border-dark-300"></div>
+                    Concentrate(s):
+                    <div className="border-t border-solid border-dark-300"></div>
+                    IQF-Frozen Fruits:
+                    <div className="border-t border-solid border-dark-300"></div>
+                    Dried Fruit:
+                    <div className="border-t border-solid border-dark-300"></div>
+                    Origin: TURKEY (TR) <br />
+                    Preservatives: NO <br />
+                    Sample Avalible: YES <br />
                   </p>
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-end p-6 border-t border-solid rounded-b border-blueGray-200">
+                <div className="flex items-center justify-between p-6 border-t border-solid rounded-b border-dark-300">
                   <button
-                    className="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none"
+                    className="flex px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase rounded outline-none bg-sky-500 active:bg-emerald-600 hover:shadow-2xl focus:outline-none"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      window.open(
+                        "https://drive.google.com/drive/folders/1kNjB9i5Mz3Yg3zer-Dace2SbBh3o4nPi?usp=sharing"
+                      );
+                    }}
                   >
-                    Close
+                    <BiCertification className="w-5 h-5 mr-3 text-white " />{" "}
+                    Analysis & Specifications
                   </button>
                   <button
-                    className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
+                    className="flex px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      setShowModal(false);
+                    }}
                   >
+                    {" "}
+                    <FiShoppingCart className="w-5 h-5 mr-3 text-white " />{" "}
                     Order Samples
                   </button>
                 </div>

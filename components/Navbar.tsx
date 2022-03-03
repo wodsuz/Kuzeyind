@@ -19,9 +19,7 @@ const NavItem: FunctionComponent<{
         <Link href={route}>
           <a target={target}>
             <span
-              className="mx-2 cursor-pointer border border-blue-500 
-              rounded py-1 px-3 bg-blue-500 text-white
-              hover:bg-blue-300"
+              className="px-3 py-1 mx-2 text-white bg-blue-500 border border-blue-500 rounded cursor-pointer hover:bg-blue-300"
               onClick={() => setActive("Home")}
             >
               {name}
@@ -82,7 +80,7 @@ const Nav = () => {
   }, [pathname]);
   return (
     <div className="flex items-center justify-between my-3">
-      <div className="text-xl font-bold  md:text-2xl ">
+      <div className="text-xl font-bold md:text-2xl ">
         <Link href="/" passHref>
           <a className="cursor-pointer">
             <Image
@@ -94,7 +92,7 @@ const Nav = () => {
               height={30}
               width={30}
             />
-            <span className="text-base md:text-xl pt-1 font-bold align-top pl-2">
+            <span className="pt-1 pl-2 text-base font-bold align-top md:text-xl">
               Kuzey ind &copy;
             </span>
           </a>
