@@ -15,7 +15,8 @@ export const fruit: IFoodProducts[] = [
   {
     Icon: BiCategory,
     title: "Types: ",
-    about: "Natural sun dried, Spray Dried(SD),Freeze Dried(FD)",
+    about:
+      "Natural sun dried, Spray Dried(SD),Freeze Dried(FD), Puree Concentrate",
   },
   {
     Icon: GiDiploma,
@@ -30,7 +31,8 @@ export const fruit: IFoodProducts[] = [
   {
     Icon: GiFactory,
     title: "Industries: ",
-    about: "Natural sun dried,Spray Dried(SD),Freeze Dried(FD)",
+    about:
+      "Healthy Snacks, Muesli, Granolas, Chocolates, Pastries, Ice Creams, Beverages, Natural Flavoring, Delicatessen, Sauces, Food Supplement",
   },
 ];
 export const puree: IFoodProducts[] = [
@@ -68,13 +70,13 @@ export const concentrate: IFoodProducts[] = [
     Icon: BiBookmark,
     title: "Description: ",
     about:
-      "Purees are pulp-containing and more viscous than juices. They are one hundred percent fruit and can be made from both fruits and vegetables. Fruit purees are made from uncooked fruit, which has had the skin and seeds removed. After that, the fruit is pulped and mashed into a creamy paste or liquid." +
-      "Fruit puree is a semi-finished product, which can be obtained from a large variety of fruits by using the correct technological process. It comes in two forms: single strength or concentrate. Fruit concentrates are thinner in consistency and are often higher in sugars than fruit purees.",
+      "Each season the fresh fruits harvest and squeezed to obtain the juice." +
+      "The juice is seperated from the skin and seeds then by evaporation process we get fruit juice concentrates preserving ali the properties of of the fresh fruit. ",
   },
   {
     Icon: BiCategory,
     title: "Types: ",
-    about: "Conventional & Organic",
+    about: "Clear, Cloudy, Deionized",
   },
   {
     Icon: GiDiploma,
