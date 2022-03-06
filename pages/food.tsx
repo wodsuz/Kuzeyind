@@ -5,7 +5,7 @@ import powder_logo from "../public/powders.png";
 import puree_logo from "../public/puree.png";
 import ıqf_logo from "../public/ıqf.png";
 import conc_logo from "../public/conc.png";
-import { fruit } from "../data";
+import { fruit, puree, concentrate, iqf } from "../data";
 import Image from "next/image";
 import { BiCertification } from "react-icons/bi";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -39,7 +39,6 @@ export default function Food({ data, ...props }) {
       window.removeEventListener("keydown", handleEsc);
     };
   }, []);
-  console.log(images[0]);
   var children = (
     <div className="" id="body">
       <a className="flex justify-center text-2xl border-b-2 text-dark-700 border-dark">
@@ -87,7 +86,7 @@ export default function Food({ data, ...props }) {
               />
             </div>
             <div className="text-sm ">
-              {fruit.map((fru) => (
+              {puree.map((fru) => (
                 <div key={fru.title + "2"} className="">
                   <div className="flex">
                     <fru.Icon className="w-7 h-7 " />
@@ -114,7 +113,7 @@ export default function Food({ data, ...props }) {
               />
             </div>
             <div className="text-sm ">
-              {fruit.map((fru) => (
+              {concentrate.map((fru) => (
                 <div key={fru.title + "3"} className="">
                   <div className="flex">
                     <fru.Icon className="w-7 h-7 " />
@@ -141,7 +140,7 @@ export default function Food({ data, ...props }) {
               />
             </div>
             <div className="text-sm ">
-              {fruit.map((fru) => (
+              {iqf.map((fru) => (
                 <div key={fru.title + "4"} className="">
                   <div className="flex">
                     <fru.Icon className="w-7 h-7 " />
