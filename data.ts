@@ -81,7 +81,7 @@ export const concentrate: IFoodProducts[] = [
   {
     Icon: GiDiploma,
     title: "Certificates: ",
-    about: "Helal,Kosher,CE,more upon agreement and request.",
+    about: "Helal,Kosher,CE, Vegan free more upon agreement and request.",
   },
   {
     Icon: GiOpenedFoodCan,
@@ -91,8 +91,7 @@ export const concentrate: IFoodProducts[] = [
   {
     Icon: GiFactory,
     title: "Industries: ",
-    about:
-      "Bakery, alcoholic and non-alcoholic beverages,confectionery,baby food,dairy and frozen fruit",
+    about: "beverages, confectionery, bakery, dairy, wine, beer, cider, mead",
   },
 ];
 export const iqf: IFoodProducts[] = [
@@ -100,8 +99,7 @@ export const iqf: IFoodProducts[] = [
     Icon: BiBookmark,
     title: "Description: ",
     about:
-      "Purees are pulp-containing and more viscous than juices. They are one hundred percent fruit and can be made from both fruits and vegetables. Fruit purees are made from uncooked fruit, which has had the skin and seeds removed. After that, the fruit is pulped and mashed into a creamy paste or liquid." +
-      "Fruit puree is a semi-finished product, which can be obtained from a large variety of fruits by using the correct technological process. It comes in two forms: single strength or concentrate. Fruit concentrates are thinner in consistency and are often higher in sugars than fruit purees.",
+      "The individual quick freezing process and result are different from traditional freezing methods. The process is often referred to as flash freezing because it is a very rapid process involving sub-zero temperatures. This preserves the freshness and nutritional value of the fruit after freezing.",
   },
   {
     Icon: BiCategory,
@@ -111,7 +109,7 @@ export const iqf: IFoodProducts[] = [
   {
     Icon: GiDiploma,
     title: "Certificates: ",
-    about: "Helal,Kosher,CE,more upon agreement and request.",
+    about: "Helal, Kosher, CE, more upon agreement and request.",
   },
   {
     Icon: GiOpenedFoodCan,
@@ -121,7 +119,6 @@ export const iqf: IFoodProducts[] = [
   {
     Icon: GiFactory,
     title: "Industries: ",
-    about:
-      "Bakery, alcoholic and non-alcoholic beverages,confectionery,baby food,dairy and frozen fruit",
+    about: "Retail outlets, hotels, restaurants, caterers, eateries, ",
   },
 ];
