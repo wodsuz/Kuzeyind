@@ -24,7 +24,35 @@ export default function Food({ data, ...props }) {
   const [title, setTitle] = React.useState("No product");
   const [Img, setImg] = React.useState("No image");
   const [src, setSrc] = React.useState(props.src);
+  const [moreinfo, setmoreinfo] = React.useState("hidden text-sm sm:block");
+  const [pureeinfo, setpureeinfo] = React.useState("hidden text-sm sm:block");
+  const [concinfo, setconcinfo] = React.useState("hidden text-sm sm:block");
+  const [iqfinfo, setiqfinfo] = React.useState("hidden text-sm sm:block");
+
   const cache = {};
+  const detailsclick = (id: number) => {
+    if (id < 2) {
+      moreinfo.includes("hidden")
+        ? setmoreinfo("visible text-sm")
+        : setmoreinfo("hidden text-sm");
+    } else if (id < 3) {
+      pureeinfo.includes("hidden")
+        ? setpureeinfo("visible text-sm")
+        : setpureeinfo("hidden text-sm");
+    } else if (id < 4) {
+      concinfo.includes("hidden")
+        ? setconcinfo("visible text-sm")
+        : setconcinfo("hidden text-sm");
+    } else if (id < 5) {
+      iqfinfo.includes("hidden")
+        ? setiqfinfo("visible text-sm")
+        : setiqfinfo("hidden text-sm");
+    } else if (id < 6) {
+      iqfinfo.includes("hidden")
+        ? setiqfinfo("visible text-sm")
+        : setiqfinfo("hidden text-sm");
+    }
+  };
   function importAll(r) {
     r.keys().forEach((key) => (cache[key] = r(key)));
   }
@@ -39,13 +67,14 @@ export default function Food({ data, ...props }) {
       window.removeEventListener("keydown", handleEsc);
     };
   }, []);
+
   var children = (
     <div className="" id="body">
-      <a className="flex justify-center text-2xl border-b-2 text-dark-700 border-dark">
+      <a className="flex justify-center text-xl border-b-2 md:text-2xl text-dark-700 border-dark">
         Fruit, Vegetables and their products
       </a>
       <div className="flex items-center justify-center border-b-2 border-dark">
-        <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+        <div className="grid grid-cols-1 mb-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           <div className="relative ">
             <div className="flex items-center justify-center mt-4">
               <Image
@@ -54,11 +83,22 @@ export default function Food({ data, ...props }) {
                 layout="fixed"
                 objectFit="cover"
                 className="rounded-full "
+                onError={() => setSrc("../public/errim.jpg")}
+                blurDataURL="../public/blurim.jpg"
                 height={150}
                 width={150}
               />
             </div>
-            <div className="text-sm ">
+            <div className="">
+              <button
+                className="flex content-center visible px-2 py-3 mx-auto mt-2 text-base text-white sm:hidden bg-sky-500 text-md dark:bg-dark-200 dark:text-primary dark:hover:bg-gray-400 rounded-2xl hover:bg-sky-800 "
+                onClick={() => detailsclick(1)}
+                aria-label="powder-details"
+              >
+                Check powder products details
+              </button>
+            </div>
+            <div className={moreinfo}>
               {fruit.map((fru) => (
                 <div key={fru.title + "1"} className="">
                   <div className="flex">
@@ -83,9 +123,18 @@ export default function Food({ data, ...props }) {
                 className="rounded-full "
                 height={150}
                 width={150}
+                onError={() => setSrc("../public/errim.jpg")}
+                blurDataURL="../public/blurim.jpg"
               />
             </div>
-            <div className="text-sm ">
+            <button
+              className="flex content-center visible px-2 py-3 mx-auto mt-2 text-base text-white sm:hidden bg-sky-500 text-md dark:bg-dark-200 dark:text-primary dark:hover:bg-gray-400 rounded-2xl hover:bg-sky-800 "
+              onClick={() => detailsclick(2)}
+              aria-label="puree-details"
+            >
+              Check puree products details
+            </button>
+            <div className={pureeinfo}>
               {puree.map((fru) => (
                 <div key={fru.title + "2"} className="">
                   <div className="flex">
@@ -110,9 +159,18 @@ export default function Food({ data, ...props }) {
                 className="rounded-full "
                 height={150}
                 width={150}
+                onError={() => setSrc("../public/errim.jpg")}
+                blurDataURL="../public/blurim.jpg"
               />
             </div>
-            <div className="text-sm ">
+            <button
+              className="flex content-center visible px-2 py-3 mx-auto mt-2 text-base text-white sm:hidden bg-sky-500 text-md dark:bg-dark-200 dark:text-primary dark:hover:bg-gray-400 rounded-2xl hover:bg-sky-800 "
+              onClick={() => detailsclick(3)}
+              aria-label="puree-details"
+            >
+              Check coencentrate products details
+            </button>
+            <div className={concinfo}>
               {concentrate.map((fru) => (
                 <div key={fru.title + "3"} className="">
                   <div className="flex">
@@ -137,9 +195,18 @@ export default function Food({ data, ...props }) {
                 className="rounded-full "
                 height={150}
                 width={150}
+                onError={() => setSrc("../public/errim.jpg")}
+                blurDataURL="../public/blurim.jpg"
               />
             </div>
-            <div className="text-sm ">
+            <button
+              className="flex content-center visible px-2 py-3 mx-auto mt-2 text-base text-white sm:hidden bg-sky-500 text-md dark:bg-dark-200 dark:text-primary dark:hover:bg-gray-400 rounded-2xl hover:bg-sky-800 "
+              onClick={() => detailsclick(4)}
+              aria-label="puree-details"
+            >
+              Check IQF products details
+            </button>
+            <div className={iqfinfo}>
               {iqf.map((fru) => (
                 <div key={fru.title + "4"} className="">
                   <div className="flex">
@@ -157,9 +224,9 @@ export default function Food({ data, ...props }) {
         </div>
       </div>
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"></div>
-      <div className="mt-2 text-center center-align">
-        Fruit and Vegetables
-        <div className="flex mt-4 ">
+      <div className="mt-2 text-xl text-center center-align md:text-2xl">
+        Fruit and Vegetable types avalible
+        <div className="flex mt-4 overflow-auto h-96 ">
           <button className="focus:outline-none " type="button">
             {images.map((image) => (
               <div className="inline-grid object-center grid-cols-1 ml-1 border-2 rounded-md border-dark-500">
@@ -181,11 +248,20 @@ export default function Food({ data, ...props }) {
                     setImg(image.src);
                     setShowModal(true);
                   }}
+                  onError={() => setSrc("../public/errim.jpg")}
+                  blurDataURL="../public/blurim.jpg"
                 />
               </div>
             ))}
           </button>
         </div>
+        <button
+          className="flex content-center visible px-2 py-3 mx-auto mt-2 text-base text-white sm:hidden bg-sky-500 text-md dark:bg-dark-200 dark:text-primary dark:hover:bg-gray-400 rounded-2xl hover:bg-sky-800 "
+          onClick={() => detailsclick(5)}
+          aria-label="display-more-details"
+        >
+          Display all products
+        </button>
       </div>
       {showModal ? (
         <>
@@ -261,7 +337,14 @@ export default function Food({ data, ...props }) {
                     className="flex px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
                     type="button"
                     onClick={() => {
-                      setShowModal(false);
+                      // https://kuzeyind-sample-order.vercel.app/products/apricot-apricot-products
+                      window.open(
+                        "https://kuzeyind-sample-order.vercel.app/products/" +
+                          title.toLowerCase() +
+                          "-" +
+                          title.toLowerCase() +
+                          "-products"
+                      );
                     }}
                   >
                     {" "}
